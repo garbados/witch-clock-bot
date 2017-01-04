@@ -1,0 +1,38 @@
+{
+  "name": "witch-clock-bot",
+  "version": "0.0.0",
+  "description": "a twitter bot that reports today's witch-date",
+  "main": "index.js",
+  "bin": "bin.js",
+  "scripts": {
+    "test": "mocha",
+    "start": "node bin.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/garbados/witch-clock-bot.git"
+  },
+  "keywords": [
+    "twitter",
+    "time",
+    "sun",
+    "moon",
+    "seasons"
+  ],
+  "author": "d dino <garbados@gmail.com>",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/garbados/witch-clock-bot/issues"
+  },
+  "homepage": "https://github.com/garbados/witch-clock-bot#readme",
+  "dependencies": {
+    "cron": "^1.2.1",
+    "lodash": "^4.17.4",
+    "twitter": "^1.7.0",
+    "witch-clock": "^1.0.0"
+  },
+  "devDependencies": {
+    "commander": "^2.9.0",
+    "mocha": "^3.2.0"
+  }
+}
