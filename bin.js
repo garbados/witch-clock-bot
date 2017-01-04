@@ -11,14 +11,22 @@ program
 .version(pkg.version)
 .parse(process.argv)
 
-var bot = new Bot(config)
-// var job = new CronJob('00 00 12 * * *', bot.tweet.bind(bot), function () {
-//   console.log(pkg.name, 'tweeted at', new Date())
-// }, false, 'America/Los_Angeles')
+function tweet () {
+  var bot = new Bot(config)
+  var promise = bot.tweet()
+    .then(function (res) {
+      console.log(pkg.name, 'tweeted at', new Date())
+      return res
+    })
+    .catch(function (err) {
+      console.log('error:', err)
+    })
 
-// job.start()
+  return promise
+}
 
-bot.tweet()
-.catch(function (err) {
-  console.log(err)
-})
+var job = new CronJob('0 0 * * * *', tweet, function () {
+  console.log(pkg.name, 'stopped at', new Date())
+}, false, 'America/Los_Angeles')
+
+job.start()

@@ -1,3 +1,4 @@
+/* global describe, before, it */
 var assert = require('assert')
 var Bot = require('./index.js')
 

@@ -10,6 +10,7 @@ function Bot (config) {
   this.config = {}
   _.assign(this.config, TWIT_DEFAULTS, config)
   this.client = new Twitter(this.config)
+  this.most_recent_tweet = null
 }
 
 Bot.prototype.say = function (date) {
@@ -27,8 +28,18 @@ Bot.prototype.say = function (date) {
 }
 
 Bot.prototype.tweet = function (date) {
+  var text = this.say(date)
+  if (this.most_recent_tweet && (this.most_recent_tweet === text)) {
+    return Promise.reject(new Error('status is a duplicate'))
+  } else {
+    this.most_recent_tweet = text
+  }
+  return this.tweetThis(text)
+}
+
+Bot.prototype.tweetThis = function (text) {
   return this.client.post('statuses/update', {
-    status: this.say(date)
+    status: text
   })
 }
 
