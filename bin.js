@@ -26,7 +26,7 @@ function tweet () {
 }
 
 console.log(pkg.name, 'starting at', new Date())
-var job = new CronJob('0 0 * * * *', tweet, function () {
+var job = new CronJob('0 * * * * *', tweet, function () {
   console.log(pkg.name, 'stopped at', new Date())
 }, false, 'America/Los_Angeles')
 
